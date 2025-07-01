@@ -13,8 +13,8 @@ Route::get('/posts', function () {
     return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });
 
-Route::get('/posts/{slug}', function ($slug) {
-    $post = Post::find($slug);
+Route::get('/posts/{id}', function ($id) {
+    $post = Post::find($id);
     return view('post', ['title' => 'Single Post', 'post' => $post]);
 });
 
