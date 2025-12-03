@@ -1,26 +1,25 @@
 <x-layout :title="$title">
-    {{-- @foreach ($posts as $post)
-        <article class="py-8 max-w-screen-md border-b border-gray-300">
-            <a href="/posts/{{ $post['slug'] }}" class="hover:underline">
-                <h2 class="mb-1 text-3xl tracking-tight font-bold text-gray-900">{{ $post['title'] }}</h2>
-            </a>
-            <div class="text-base text-gray-500">
-                <a href="/authors/{{ $post->author->username }}" class="hover:underline">{{ $post->author->name }}</a> |
-                30
-                Juni 2025
-            </div>
-            <a href="/categories/{{ $post->category->slug }}"
-                class="inline-block mt-2 text-sm border px-3 py-1 rounded-md hover:bg-gray-100">
-                {{ $post->category->name }}
-            </a>
-            <p class="my-4 font-light">
-                {{ Str::limit($post['body'], 100) }}
-            </p>
-            <a href="/posts/{{ $post['slug'] }}" class="font-medium text-blue-500 hover-underline">Read More &raquo;</a>
-        </article>
-    @endforeach --}}
 
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+
+
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
+        <form class="mb-8 max-w-md mx-auto">
+            <label for="search" class="block mb-2.5 text-sm font-medium text-heading sr-only ">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                            d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+                    </svg>
+                </div>
+                <input type="search" id="search"
+                    class="block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+                    placeholder="Search" name="search" autofocus autocomplete="off" />
+                <button type="submit"
+                    class="absolute end-1.5 bottom-1.5 text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
+            </div>
+        </form>
         <div class="grid gap-8 lg:grid-cols-3 md:grid-cols-2">
             @foreach ($posts as $post)
                 <article
@@ -38,16 +37,17 @@
                             href="/posts/{{ $post['slug'] }}">{{ $post['title'] }}</a></h2>
                     <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($post['body'], 100) }}</p>
                     <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-4">
-                            <img class="w-7 h-7 rounded-full"
-                                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                                alt="{{ $post->author->name }}" />
-                            <a href="/authors/{{ $post->author->username }}">
+                        <a href="/authors/{{ $post->author->username }}">
+                            <div class="flex items-center space-x-4">
+                                <img class="w-7 h-7 rounded-full"
+                                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                                    alt="{{ $post->author->name }}" />
+
                                 <span class="font-medium text-xs dark:text-white">
                                     {{ $post->author->name }}
                                 </span>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                         <a href="/posts/{{ $post['slug'] }}"
                             class="text-xs inline-flex items-center font-medium text-blue-500 dark:text-primary-500 hover:underline">
                             Read more
