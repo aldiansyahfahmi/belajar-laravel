@@ -35,16 +35,18 @@
                         <span class="text-sm">{{ $post->created_at->diffForHumans() }}</span>
                     </div>
                     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a
-                            href="#">{{ $post['title'] }}</a></h2>
+                            href="/posts/{{ $post['slug'] }}">{{ $post['title'] }}</a></h2>
                     <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($post['body'], 100) }}</p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-4">
                             <img class="w-7 h-7 rounded-full"
                                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
                                 alt="{{ $post->author->name }}" />
-                            <span class="font-medium text-xs dark:text-white">
-                                {{ $post->author->name }}
-                            </span>
+                            <a href="/authors/{{ $post->author->username }}">
+                                <span class="font-medium text-xs dark:text-white">
+                                    {{ $post->author->name }}
+                                </span>
+                            </a>
                         </div>
                         <a href="/posts/{{ $post['slug'] }}"
                             class="text-xs inline-flex items-center font-medium text-blue-500 dark:text-primary-500 hover:underline">
