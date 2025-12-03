@@ -15,17 +15,20 @@ class CategorySeeder extends Seeder
     {
         Category::factory()->create([
             'name' => 'Mobile Programming',
-            'slug' => 'mobile-programming'
+            'slug' => 'mobile-programming',
+            'color' => 'bg-blue-100',
         ]);
 
         Category::factory()->create([
             'name' => 'Web Programming',
-            'slug' => 'web-programming'
+            'slug' => 'web-programming',
+            'color' => 'bg-green-100',
         ]);
 
         Category::factory()->create([
             'name' => 'Artificial Intelegence',
-            'slug' => 'artificial-intelegance'
+            'slug' => 'artificial-intelegance',
+            'color' => 'bg-red-100',
         ]);
     }
 }
