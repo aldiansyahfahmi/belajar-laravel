@@ -3,7 +3,6 @@
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,23 +10,8 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', function () {
-    // $posts = Post::with(['author', 'category'])->latest()->get();
-    $posts = Post::latest();
-
-    if (request('search')) {
-        $posts->where('title', 'like', '%' . request('search') . '%');
-    }
-    return view('posts', ['title' => 'Blog', 'posts' => $posts->get()]);
-});
-
-Route::get('/authors/{user:username}', function (User $user) {
-    // $posts = $user->posts->load('author', 'category');
-    return view('posts', ['title' => count($user->posts) . ' Article By. ' . $user->name, 'posts' => $user->posts]);
-});
-
-Route::get('/categories/{category:slug}', function (Category $category) {
-    // $posts = $category->posts->load('author', 'category');
-    return view('posts', ['title' => count($category->posts) .  ' Article Category ' . $category->name, 'posts' => $category->posts]);
+    $posts = Post::latest()->filter(request(['search', 'category', 'author']))->get();
+    return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });
 
 Route::get('/posts/{post:slug}', function (Post $post) {
